@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  shield:
+    build: 
+      context: .
+      dockerfile: Dockerfile.shield
+    ports:
+      - "9000:9000"
+    environment:
+      - TARGET_URL=https://api.openai.com
+    networks:
+      - choubis-net
+
+  monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile.monitor
+    depends_on:
+      - shield
+    networks:
+      - choubis-net
+
+networks:
+  choubis-net:
+    driver: bridge
