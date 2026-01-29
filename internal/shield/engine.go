@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"crypto/tls"
 	"io"
-	"log"
 	"net/http"
 	"net/http/httputil"
 	"net/url"

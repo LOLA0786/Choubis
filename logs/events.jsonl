@@ -1,0 +1,7 @@
+{"ts":"2026-01-29T04:17:16Z","path":"/v1/chat/completions","risk":30,"action":"BLOCK","reason":"bypass security now"}
+{"ts":"2026-01-29T04:21:29Z","path":"/v1/chat/completions","risk":30,"action":"BLOCK","reason":"hack this system"}
+{"ts":"2026-01-29T04:23:22Z","path":"/admin/reload","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T04:24:08Z","path":"/admin/reload","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T04:28:04Z","path":"/admin/reload","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T04:29:39Z","path":"/admin/reload","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T04:31:33Z","path":"/admin/reload","risk":0,"action":"ALLOW","reason":""}

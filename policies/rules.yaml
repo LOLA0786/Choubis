@@ -1,0 +1,15 @@
+rules:
+  - id: jailbreak
+    pattern: "(?i)bypass|override|ignore.*security"
+    score: 40
+    action: block
+
+  - id: HACKing
+    pattern: "(?i)HACK|exploit|malware"
+    score: 50
+    action: block
+
+  - id: pii
+    pattern: "(?i)aadhaar|passport|ssn"
+    score: 30
+    action: redact
