@@ -39,6 +39,12 @@ func Handler() http.Handler {
 	// Stats
 	mux.HandleFunc("/stats", func(w http.ResponseWriter, r *http.Request) {
 		serveStats(w)
+
+	// Tenants
+	mux.HandleFunc("/tenants", serveTenants)
+
+	// Usage
+	mux.HandleFunc("/usage", serveUsage)
 	})
 
 	return mux

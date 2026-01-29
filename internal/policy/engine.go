@@ -2,6 +2,7 @@ package policy
 
 import (
 	"os"
+	"path/filepath"
 	"regexp"
 
 	"gopkg.in/yaml.v3"
@@ -18,21 +19,37 @@ type Policy struct {
 	Rules []Rule `yaml:"rules"`
 }
 
-var active Policy
+var cache = map[string]Policy{}
 
-func Load(path string) error {
+func Load(tenant string) error {
+
+	path := filepath.Join("policies", tenant+".yaml")
 
 	b, err := os.ReadFile(path)
 	if err != nil {
 		return err
 	}
 
-	return yaml.Unmarshal(b, &active)
+	var p Policy
+
+	err = yaml.Unmarshal(b, &p)
+	if err != nil {
+		return err
+	}
+
+	cache[tenant] = p
+
+	return nil
 }
 
-func Evaluate(text string) (string, int, string) {
+func Evaluate(tenant, text string) (string, int, string) {
 
-	for _, r := range active.Rules {
+	p, ok := cache[tenant]
+	if !ok {
+		return "", 0, "allow"
+	}
+
+	for _, r := range p.Rules {
 
 		re := regexp.MustCompile(r.Pattern)
 

@@ -1,0 +1,5 @@
+rules:
+  - id: demo
+    pattern: "(?i)password"
+    score: 20
+    action: redact

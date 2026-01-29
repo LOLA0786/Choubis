@@ -1,0 +1,5 @@
+rules:
+  - id: strict
+    pattern: "(?i)hack|bypass|exploit"
+    score: 100
+    action: block

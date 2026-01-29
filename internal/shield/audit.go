@@ -2,7 +2,6 @@ package shield
 
 import (
 	"encoding/json"
-	"fmt"
 	"os"
 	"path/filepath"
 	"sync"
@@ -13,43 +12,21 @@ var auditMu sync.Mutex
 
 type AuditEvent struct {
 	Timestamp string `json:"ts"`
+	Tenant    string `json:"tenant"`
 	Path      string `json:"path"`
 	Risk       int    `json:"risk"`
 	Action     string `json:"action"`
 	Reason     string `json:"reason"`
 }
 
-func auditPath() string {
-
-	exe, err := os.Executable()
-	if err != nil {
-		fmt.Println("AUDIT exe error:", err)
-		return "logs/events.jsonl"
-	}
-
-	fmt.Println("AUDIT exe:", exe)
-
-	base := filepath.Dir(filepath.Dir(exe))
-
-	fmt.Println("AUDIT base:", base)
-
-	return filepath.Join(base, "logs", "events.jsonl")
-}
-
-func LogEvent(e AuditEvent) {
+func LogEvent(tenant string, e AuditEvent) {
 
 	auditMu.Lock()
 	defer auditMu.Unlock()
 
-	path := auditPath()
+	path := filepath.Join("logs", tenant+".jsonl")
 
-	fmt.Println("AUDIT path:", path)
-
-	err := os.MkdirAll(filepath.Dir(path), 0755)
-	if err != nil {
-		fmt.Println("AUDIT mkdir error:", err)
-		return
-	}
+	os.MkdirAll("logs", 0755)
 
 	f, err := os.OpenFile(
 		path,
@@ -57,17 +34,14 @@ func LogEvent(e AuditEvent) {
 		0644,
 	)
 	if err != nil {
-		fmt.Println("AUDIT open error:", err)
 		return
 	}
 	defer f.Close()
 
 	e.Timestamp = time.Now().UTC().Format(time.RFC3339)
+	e.Tenant = tenant
 
 	b, _ := json.Marshal(e)
 
-	_, err = f.Write(append(b, '\n'))
-	if err != nil {
-		fmt.Println("AUDIT write error:", err)
-	}
+	f.Write(append(b, '\n'))
 }

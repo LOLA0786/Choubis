@@ -1,0 +1,8 @@
+{"ts":"2026-01-29T05:08:59Z","tenant":"acme","path":"/v1/chat/completions","risk":100,"action":"BLOCK","reason":"hack system"}
+{"ts":"2026-01-29T05:11:24Z","tenant":"acme","path":"/v1/chat/completions","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T05:11:24Z","tenant":"acme","path":"/v1/chat/completions","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T05:11:24Z","tenant":"acme","path":"/v1/chat/completions","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T05:11:25Z","tenant":"acme","path":"/v1/chat/completions","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T05:11:25Z","tenant":"acme","path":"/v1/chat/completions","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T05:11:25Z","tenant":"acme","path":"/v1/chat/completions","risk":0,"action":"ALLOW","reason":""}
+{"ts":"2026-01-29T05:11:26Z","tenant":"acme","path":"/v1/chat/completions","risk":0,"action":"ALLOW","reason":""}
